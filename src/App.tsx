@@ -11,7 +11,7 @@ import SettingsScreen from './screens/settings/SettingsScreen';
 const AuthStack = createNativeStackNavigator();
 const AppTab = createBottomTabNavigator();
 
-const isUserAuthenticated = false;
+const isUserAuthenticated = true;
 export default function App(): JSX.Element {
   return (
     <NavigationContainer>

@@ -1,6 +1,12 @@
+import {Button} from '@rneui/base';
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 
 export default function HomeScreen(): JSX.Element {
-  return <Text>Home Screen</Text>;
+  return (
+    <View>
+      <Text>Home Screen</Text>
+      <Button title="Welcome" />
+    </View>
+  );
 }
