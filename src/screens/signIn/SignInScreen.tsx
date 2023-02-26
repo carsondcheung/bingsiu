@@ -14,12 +14,15 @@ export default function SignInScreen(): JSX.Element {
       initialValues={{email: '', password: ''}}
       validationSchema={object({
         email: string().email('Invalid email address').required('Required'),
-        password: string()
-          .required('Required')
-          .min(10, 'Must be at least 10 characters'),
+        password: string().required('Required'),
       })}
       onSubmit={values =>
-        auth().createUserWithEmailAndPassword(values.email, values.password)
+        auth()
+          .signInWithEmailAndPassword(values.email, values.password)
+          .then(userCredentials =>
+            console.log('user signed in successfully with', userCredentials),
+          )
+          .catch(error => console.log(error.code))
       }
       validateOnChange={false}
       validateOnBlur={false}>
