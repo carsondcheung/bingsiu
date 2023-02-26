@@ -7,8 +7,9 @@ import {Text} from 'react-native';
 
 import ChatScreen from './screens/chat/ChatScreen';
 import HomeScreen from './screens/home/HomeScreen';
-import LoginScreen from './screens/login/LoginScreen';
 import SettingsScreen from './screens/settings/SettingsScreen';
+import SignInScreen from './screens/signIn/SignInScreen';
+import SignUpScreen from './screens/signUp/SignUpScreen';
 
 const AuthStack = createNativeStackNavigator();
 const AppTab = createBottomTabNavigator();
@@ -41,7 +42,8 @@ export default function App(): JSX.Element {
         </AppTab.Navigator>
       ) : (
         <AuthStack.Navigator>
-          <AuthStack.Screen name="Login" component={LoginScreen} />
+          <AuthStack.Screen name="Sign In" component={SignInScreen} />
+          <AuthStack.Screen name="Sign Up" component={SignUpScreen} />
         </AuthStack.Navigator>
       )}
     </NavigationContainer>
