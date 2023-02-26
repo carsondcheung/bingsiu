@@ -1,7 +1,9 @@
+import auth from '@react-native-firebase/auth';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Text} from 'react-native';
 
 import ChatScreen from './screens/chat/ChatScreen';
 import HomeScreen from './screens/home/HomeScreen';
@@ -11,11 +13,27 @@ import SettingsScreen from './screens/settings/SettingsScreen';
 const AuthStack = createNativeStackNavigator();
 const AppTab = createBottomTabNavigator();
 
-const isUserAuthenticated = true;
 export default function App(): JSX.Element {
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(() => {
+      setUser(user);
+      initializing && setInitializing(false);
+    });
+    return subscriber;
+  });
+
+  initializing && (
+    <>
+      <Text>Loading...</Text>
+    </>
+  );
+
   return (
     <NavigationContainer>
-      {isUserAuthenticated ? (
+      {user ? (
         <AppTab.Navigator>
           <AppTab.Screen name="Home" component={HomeScreen} />
           <AppTab.Screen name="Chat" component={ChatScreen} />
