@@ -1,4 +1,4 @@
-package com.bingsiu;
+package com.carusonsan.bingsiu;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

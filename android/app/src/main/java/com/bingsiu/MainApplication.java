@@ -1,4 +1,4 @@
-package com.bingsiu;
+package com.carusonsan.bingsiu;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
