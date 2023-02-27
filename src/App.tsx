@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import ChatScreen from './screens/chat/ChatScreen';
 import HomeScreen from './screens/home/HomeScreen';
@@ -46,6 +47,7 @@ export default function App(): JSX.Element {
           <AuthStack.Screen name="Sign Up" component={SignUpScreen} />
         </AuthStack.Navigator>
       )}
+      <Toast />
     </NavigationContainer>
   );
 }

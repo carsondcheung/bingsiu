@@ -3,12 +3,27 @@ import {Button, Input} from '@rneui/themed';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';
+import Toast from 'react-native-toast-message';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {object, string} from 'yup';
 
 import {AppStyle} from '../../App.styles';
+import {
+  AuthenticationCodeDisplay,
+  AuthenticationCodes,
+} from '../../helpers/FirebaseErrorCodes';
 
 export default function SignInScreen(): JSX.Element {
+  const showErrorToast = (errorCode: AuthenticationCodes) => {
+    console.log(errorCode);
+    Toast.show({
+      type: 'error',
+      text1: 'Sign In Error',
+      text2: AuthenticationCodeDisplay[errorCode],
+      position: 'bottom',
+    });
+  };
+
   return (
     <Formik
       initialValues={{email: '', password: ''}}
@@ -22,7 +37,7 @@ export default function SignInScreen(): JSX.Element {
           .then(userCredentials =>
             console.log('user signed in successfully with', userCredentials),
           )
-          .catch(error => console.log(error.code))
+          .catch(error => showErrorToast(error.code))
       }
       validateOnChange={false}
       validateOnBlur={false}>
