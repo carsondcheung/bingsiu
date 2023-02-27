@@ -396,7 +396,7 @@ PODS:
     - Firebase/Auth (= 10.5.0)
     - React-Core
     - RNFBApp
-  - RNScreens (3.19.0):
+  - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
   - RNVectorIcons (9.2.0):
@@ -584,7 +584,7 @@ SPEC CHECKSUMS:
   ReactCommon: 2228b5d854dfa2b7569955decfdc52303ed61a7e
   RNFBApp: 6210da3d32c005190647805e6ced236d9be5520f
   RNFBAuth: 74c8d076916da0f08adcb750bfb599761c7c7e81
-  RNScreens: ea4cd3a853063cda19a4e3c28d2e52180c80f4eb
+  RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: 5b0304b3dbef2b52e078052138e23a19c7dacaef
 

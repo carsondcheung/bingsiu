@@ -1,17 +1,16 @@
+import {
+  AuthenticationCodeDisplay,
+  AuthenticationCodes,
+} from '@helpers/errorCodes/FirebaseErrorCodes';
 import auth from '@react-native-firebase/auth';
 import {Button, Input} from '@rneui/themed';
+import {AppStyle} from '@src/App.styles';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';
 import Toast from 'react-native-toast-message';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {object, string} from 'yup';
-
-import {AppStyle} from '../../App.styles';
-import {
-  AuthenticationCodeDisplay,
-  AuthenticationCodes,
-} from '../../helpers/FirebaseErrorCodes';
 
 export default function SignInScreen(): JSX.Element {
   const showErrorToast = (errorCode: AuthenticationCodes) => {

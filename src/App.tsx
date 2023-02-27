@@ -2,15 +2,14 @@ import auth from '@react-native-firebase/auth';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ChatScreen from '@screens/chat/ChatScreen';
+import HomeScreen from '@screens/home/HomeScreen';
+import SettingsScreen from '@screens/settings/SettingsScreen';
+import SignInScreen from '@screens/signIn/SignInScreen';
+import SignUpScreen from '@screens/signUp/SignUpScreen';
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import Toast from 'react-native-toast-message';
-
-import ChatScreen from './screens/chat/ChatScreen';
-import HomeScreen from './screens/home/HomeScreen';
-import SettingsScreen from './screens/settings/SettingsScreen';
-import SignInScreen from './screens/signIn/SignInScreen';
-import SignUpScreen from './screens/signUp/SignUpScreen';
 
 const AuthStack = createNativeStackNavigator();
 const AppTab = createBottomTabNavigator();
