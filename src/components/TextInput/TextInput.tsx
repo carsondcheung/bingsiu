@@ -2,6 +2,7 @@ import React from 'react';
 import {
   TextInput as ReactNativeTextInput,
   TextInputProps as ReactNativeTextInputProps,
+  Text,
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
@@ -18,12 +19,19 @@ const StyledTextInput = styled(ReactNativeTextInput)`
   border-color: violet;
 `;
 
+const ErrorMessageText = styled(Text)`
+  color: red;
+`;
+
 export function TextInput({
   ...rest
 }: React.PropsWithChildren<TextInputProps>): JSX.Element {
   return (
     <View>
       <StyledTextInput {...rest} />
+      {rest.errorMessage && (
+        <ErrorMessageText>{rest.errorMessage}</ErrorMessageText>
+      )}
     </View>
   );
 }
