@@ -1,12 +1,9 @@
 import auth from '@react-native-firebase/auth';
-import {Button, Input} from '@rneui/themed';
+import {Button, TextInput} from '@src/components';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {object, string} from 'yup';
-
-import {AppStyle} from '../../App.styles';
 
 export default function SignUpScreen(): JSX.Element {
   return (
@@ -29,42 +26,39 @@ export default function SignUpScreen(): JSX.Element {
       validateOnChange={false}
       validateOnBlur={false}>
       {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
-        <View style={AppStyle.parentContainer}>
-          <Input
+        <View>
+          <TextInput
             autoCapitalize="none"
             placeholder="Enter Email Address"
-            leftIcon={<MaterialCommunityIcons name="account" size={20} />}
             onChangeText={handleChange('email')}
             onBlur={handleBlur('email')}
             value={values.email}
-            errorMessage={errors.email}
-            renderErrorMessage={!errors.email && touched.email}
+            // errorMessage={errors.email}
+            // renderErrorMessage={!errors.email && touched.email}
           />
-          <Input
+          <TextInput
             autoCapitalize="none"
             placeholder="Enter Password"
-            leftIcon={<MaterialCommunityIcons name="lock" size={20} />}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.password}
-            errorMessage={errors.password}
-            renderErrorMessage={!errors.password && touched.password}
+            // errorMessage={errors.password}
+            // renderErrorMessage={!errors.password && touched.password}
             secureTextEntry={true}
           />
-          <Input
+          <TextInput
             autoCapitalize="none"
             placeholder="Confirm Password"
-            leftIcon={<MaterialCommunityIcons name="lock" size={20} />}
             onChangeText={handleChange('confirmPassword')}
             onBlur={handleBlur('confirmPassword')}
             value={values.confirmPassword}
-            errorMessage={errors.confirmPassword}
-            renderErrorMessage={
-              !errors.confirmPassword && touched.confirmPassword
-            }
+            // errorMessage={errors.confirmPassword}
+            // renderErrorMessage={
+            // !errors.confirmPassword && touched.confirmPassword
+            // }
             secureTextEntry={true}
           />
-          <Button onPress={handleSubmit}>Sign In</Button>
+          <Button title="Sign In" onPress={handleSubmit} />
         </View>
       )}
     </Formik>

@@ -3,18 +3,16 @@ import {
   AuthenticationCodes,
 } from '@helpers/errorCodes/FirebaseErrorCodes';
 import auth from '@react-native-firebase/auth';
-import {Button, Input} from '@rneui/themed';
-import {AppStyle} from '@src/App.styles';
+import {Button, TextInput} from '@src/components';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {object, string} from 'yup';
 
 export default function SignInScreen(): JSX.Element {
   const showErrorToast = (errorCode: AuthenticationCodes) => {
-    console.log(errorCode);
     Toast.show({
       type: 'error',
       text1: 'Sign In Error',
@@ -22,6 +20,8 @@ export default function SignInScreen(): JSX.Element {
       position: 'bottom',
     });
   };
+
+  const insets = useSafeAreaInsets();
 
   return (
     <Formik
@@ -41,21 +41,25 @@ export default function SignInScreen(): JSX.Element {
       validateOnChange={false}
       validateOnBlur={false}>
       {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
-        <View style={AppStyle.parentContainer}>
-          <Input
+        <View
+          style={{
+            paddingTop: insets.top,
+            paddingBottom: insets.bottom,
+            paddingLeft: insets.left,
+            paddingRight: insets.right,
+          }}>
+          <TextInput
             autoCapitalize="none"
             placeholder="Enter Email Address"
-            leftIcon={<MaterialCommunityIcons name="account" size={20} />}
             onChangeText={handleChange('email')}
             onBlur={handleBlur('email')}
             value={values.email}
             errorMessage={errors.email}
             renderErrorMessage={!errors.email && touched.email}
           />
-          <Input
+          <TextInput
             autoCapitalize="none"
             placeholder="Enter Password"
-            leftIcon={<MaterialCommunityIcons name="lock" size={20} />}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.password}
@@ -63,7 +67,8 @@ export default function SignInScreen(): JSX.Element {
             renderErrorMessage={!errors.password && touched.password}
             secureTextEntry={true}
           />
-          <Button onPress={handleSubmit}>Sign In</Button>
+          <Button title="Sign in" onPress={handleSubmit} />
+          <Button title="Sign up" onPress={handleSubmit} />
         </View>
       )}
     </Formik>

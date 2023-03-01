@@ -10,6 +10,7 @@
       "@helpers/*": ["src/helpers/*"],
       "@screens/*": ["src/screens/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "types": ["jest", "@types/styled-components-react-native"]
   }
 }
