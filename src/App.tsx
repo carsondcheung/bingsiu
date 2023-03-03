@@ -12,8 +12,10 @@ import {Text} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 
-const AuthStack = createNativeStackNavigator();
-const AppTab = createBottomTabNavigator();
+import {AppTabParamList, AuthStackParamList} from './models/ScreenProps';
+
+const AppTab = createBottomTabNavigator<AppTabParamList>();
+const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 
 export default function App(): JSX.Element {
   const [initializing, setInitializing] = useState(true);
@@ -37,15 +39,19 @@ export default function App(): JSX.Element {
     <SafeAreaProvider>
       <NavigationContainer>
         {user ? (
-          <AppTab.Navigator screenOptions={{headerShown: false}}>
+          <AppTab.Navigator
+            initialRouteName="Home"
+            screenOptions={{headerShown: false}}>
             <AppTab.Screen name="Home" component={HomeScreen} />
             <AppTab.Screen name="Chat" component={ChatScreen} />
             <AppTab.Screen name="Settings" component={SettingsScreen} />
           </AppTab.Navigator>
         ) : (
-          <AuthStack.Navigator screenOptions={{headerShown: false}}>
-            <AuthStack.Screen name="Sign In" component={SignInScreen} />
-            <AuthStack.Screen name="Sign Up" component={SignUpScreen} />
+          <AuthStack.Navigator
+            initialRouteName="SignIn"
+            screenOptions={{headerShown: false}}>
+            <AuthStack.Screen name="SignIn" component={SignInScreen} />
+            <AuthStack.Screen name="SignUp" component={SignUpScreen} />
           </AuthStack.Navigator>
         )}
         <Toast />

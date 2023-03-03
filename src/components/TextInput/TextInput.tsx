@@ -29,7 +29,7 @@ export function TextInput({
   return (
     <View>
       <StyledTextInput {...rest} />
-      {rest.errorMessage && (
+      {rest.renderErrorMessage && (
         <ErrorMessageText>{rest.errorMessage}</ErrorMessageText>
       )}
     </View>

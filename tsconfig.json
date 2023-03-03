@@ -8,6 +8,7 @@
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
       "@helpers/*": ["src/helpers/*"],
+      "@models/*": ["src/models/*"],
       "@screens/*": ["src/screens/*"],
       "@utils/*": ["src/utils/*"]
     },
