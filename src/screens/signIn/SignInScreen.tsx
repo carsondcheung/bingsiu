@@ -1,9 +1,5 @@
-import {
-  AuthenticationCodeDisplay,
-  AuthenticationCodes,
-} from '@helpers/errorCodes/FirebaseErrorCodes';
+import {Button, TextInput} from '@components';
 import auth from '@react-native-firebase/auth';
-import {Button, TextInput} from '@src/components';
 import {AuthStackProps} from '@src/models';
 import {Formik} from 'formik';
 import React from 'react';
@@ -15,11 +11,11 @@ import {object, string} from 'yup';
 export default function SignInScreen({
   navigation,
 }: AuthStackProps): JSX.Element {
-  const showErrorToast = (errorCode: AuthenticationCodes) => {
+  const showErrorToast = (error: string) => {
     Toast.show({
       type: 'error',
       text1: 'Sign In Error',
-      text2: AuthenticationCodeDisplay[errorCode],
+      text2: error,
       position: 'bottom',
     });
   };
@@ -36,10 +32,7 @@ export default function SignInScreen({
       onSubmit={values =>
         auth()
           .signInWithEmailAndPassword(values.email, values.password)
-          .then(userCredentials =>
-            console.log('user signed in successfully with', userCredentials),
-          )
-          .catch(error => showErrorToast(error.code))
+          .catch((error: string) => showErrorToast(error))
       }
       validateOnChange={false}
       validateOnBlur={false}>

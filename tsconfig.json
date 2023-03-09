@@ -4,11 +4,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@config/*": ["src/config/*"],
-      "@helpers/*": ["src/helpers/*"],
+      "@components": ["src/components/index"],
+      "@configs/*": ["src/configs/*"],
+      "@contexts/*": ["src/contexts/*"],
       "@models/*": ["src/models/*"],
+      "@src/*": ["src/*"],
       "@screens/*": ["src/screens/*"],
       "@utils/*": ["src/utils/*"]
     },

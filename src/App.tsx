@@ -18,12 +18,11 @@ const AppTab = createBottomTabNavigator<AppTabParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 
 export default function App(): JSX.Element {
+  const user = auth().currentUser;
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(() => {
-      setUser(user);
       initializing && setInitializing(false);
     });
     return subscriber;
@@ -38,7 +37,14 @@ export default function App(): JSX.Element {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {user ? (
+        {!user ? (
+          <AuthStack.Navigator
+            initialRouteName="SignIn"
+            screenOptions={{headerShown: false}}>
+            <AuthStack.Screen name="SignIn" component={SignInScreen} />
+            <AuthStack.Screen name="SignUp" component={SignUpScreen} />
+          </AuthStack.Navigator>
+        ) : (
           <AppTab.Navigator
             initialRouteName="Home"
             screenOptions={{headerShown: false}}>
@@ -46,13 +52,6 @@ export default function App(): JSX.Element {
             <AppTab.Screen name="Chat" component={ChatScreen} />
             <AppTab.Screen name="Settings" component={SettingsScreen} />
           </AppTab.Navigator>
-        ) : (
-          <AuthStack.Navigator
-            initialRouteName="SignIn"
-            screenOptions={{headerShown: false}}>
-            <AuthStack.Screen name="SignIn" component={SignInScreen} />
-            <AuthStack.Screen name="SignUp" component={SignUpScreen} />
-          </AuthStack.Navigator>
         )}
         <Toast />
       </NavigationContainer>
