@@ -1,4 +1,4 @@
-import auth from '@react-native-firebase/auth';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -14,19 +14,21 @@ import Toast from 'react-native-toast-message';
 
 import {AppTabParamList, AuthStackParamList} from './models/ScreenProps';
 
-const AppTab = createBottomTabNavigator<AppTabParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
+const AppTab = createBottomTabNavigator<AppTabParamList>();
 
 export default function App(): JSX.Element {
-  const user = auth().currentUser;
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(() => {
+    const subscriber = auth().onAuthStateChanged(userState => {
+      setUser(userState);
       initializing && setInitializing(false);
     });
+
     return subscriber;
-  });
+  }, [user, initializing]);
 
   initializing && (
     <>
