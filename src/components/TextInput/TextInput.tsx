@@ -12,7 +12,7 @@ interface TextInputProps extends ReactNativeTextInputProps {
   renderErrorMessage?: boolean;
 }
 
-const StyledTextInput = styled(ReactNativeTextInput)`
+const StyledTextInput = styled(ReactNativeTextInput)<TextInputProps>`
   padding: 10px;
   border: solid 2px;
   border-radius: 16px;

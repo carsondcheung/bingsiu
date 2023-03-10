@@ -1,4 +1,4 @@
-import {Button, TextInput} from '@components';
+import {Button, Text, TextInput} from '@components';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {AuthStackProps} from '@src/models';
 import {Formik} from 'formik';
@@ -39,6 +39,7 @@ export default function SignInScreen({
       {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
         <SafeAreaView>
           <View>
+            <Text fontSize="header">Sign In</Text>
             <KeyboardAvoidingView>
               <TextInput
                 autoCapitalize="none"
