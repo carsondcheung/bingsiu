@@ -34,6 +34,7 @@ export default function SignUpScreen({
           <View>
             <TextInput
               autoCapitalize="none"
+              autoCorrect={false}
               placeholder="Enter Email Address"
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
